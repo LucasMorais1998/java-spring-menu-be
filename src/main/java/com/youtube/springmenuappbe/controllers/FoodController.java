@@ -14,4 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/food")
 public class FoodController {
+    @Autowired
+    private FoodRepository repository;
+
+    @GetMapping
+    public List<FoodResponseDTO> getAllFoods() {
+        List<FoodResponseDTO> foodList = repository.findAll().stream().map(FoodResponseDTO::new).toList();
+
+        return foodList;
+    }
 }
