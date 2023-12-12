@@ -26,8 +26,6 @@ public class FoodController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<FoodResponseDTO> getAllFoods() {
-        List<FoodResponseDTO> foodList = repository.findAll().stream().map(FoodResponseDTO::new).toList();
-
-        return foodList;
+        return repository.findAll().stream().map(FoodResponseDTO::new).toList();
     }
 }
