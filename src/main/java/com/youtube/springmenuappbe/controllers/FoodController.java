@@ -1,13 +1,11 @@
 package com.youtube.springmenuappbe.controllers;
 
+import com.youtube.springmenuappbe.dtos.FoodRequestDTO;
 import com.youtube.springmenuappbe.dtos.FoodResponseDTO;
 import com.youtube.springmenuappbe.entities.Food;
 import com.youtube.springmenuappbe.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,13 @@ import java.util.List;
 public class FoodController {
     @Autowired
     private FoodRepository repository;
+
+    @PostMapping
+    public Food saveFood(@RequestBody FoodRequestDTO data) {
+        Food foodData = new Food(data);
+
+        return repository.save(foodData);
+    }
 
     @GetMapping
     public List<FoodResponseDTO> getAllFoods() {
