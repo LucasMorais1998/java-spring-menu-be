@@ -4,6 +4,8 @@ import com.youtube.springmenuappbe.dtos.FoodRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Table(name = "foods")
 @Entity(name = "foods")
 @Getter
@@ -13,8 +15,8 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String title;
     private String image;
     private Integer price;
